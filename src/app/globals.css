@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+  --color-page: #f8f9ff;
+  --color-surface: #ffffff;
+  --color-ink: #000c2c;
+  --color-heading: #07143d;
+  --color-body: #424369;
+  --color-muted: #5b6480;
+  --color-line: #d9dbe7;
+
+  --color-purple-100: #f3f4ff;
+  --color-purple-200: #e9ecff;
+  --color-purple-300: #ced3ff;
+  --color-purple-400: #a1a7ff;
+  --color-purple-500: #6e6de3;
+  --color-purple-600: #4e37d2;
+  --color-purple-700: #2a1381;
+  --color-purple-800: #1a0c59;
+  --color-purple-900: #161635;
+
+  --color-cyan-400: #02b4cd;
+  --color-cyan-500: #008ea3;
+  --color-mint-500: #009780;
+  --color-brand-dark: #021850;
+
+  --color-danger-ink: #b42318;
+  --color-danger-bg: #fef3f2;
+  --color-danger-line: #fda29b;
+
+  --shadow-card: 0 16px 48px rgba(46, 38, 94, 0.08);
+  --shadow-soft: 0 0 24px rgba(11, 19, 42, 0.06);
+
+  --radius-control: 12px;
+  --radius-tile: 16px;
+  --radius-card: 18px;
+  --radius-tile-lg: 20px;
+  --radius-hero: 27px;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-body);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-purple-200);
+    color: var(--color-purple-800);
+  }
+}
+
+@layer utilities {
+  .bg-product-hero {
+    background-image: linear-gradient(
+      125deg,
+      #021850 0%,
+      #1a0c59 45%,
+      #4e37d2 100%
+    );
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-rise {
+    animation: rise 320ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  .animate-rise-delayed {
+    animation: rise 320ms cubic-bezier(0.2, 0.7, 0.3, 1) 120ms both;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-rise,
+  .animate-rise-delayed,
+  .shimmer {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
